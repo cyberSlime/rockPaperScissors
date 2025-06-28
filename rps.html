@@ -4,135 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="rps.js" defer></script>
 </head>
 <body>
-    <script>
-         let message = "Please enter your selection in this battle of wits";
-         
-         playGame();
+    <div class="rps">
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
 
-         function getComputerChoice (choice) {
-            let play = "undecided";
-            choice *= 3;
-            choice = Math.floor(choice);
-            if (choice === 0) {
-                play = "rock";
-            }
-            else if (choice === 1) {
-                play = "scissors";
-            }
-            else {
-                play = "paper";
-            }
-            return play;
-         }
-
-         function getHumanChoice(message) {
-
-            let userPlay = prompt(message, 0);
-            if (userPlay === null) {
-                 return "quit";
-            }   
-
-            userPlay = userPlay.toLowerCase();
-
-            if (!(userPlay === "scissors" || userPlay === "rock" || userPlay === "paper")) {
-                userPlay = getHumanChoice("You fool. You have succumbed to the first hurdle. Please re enter your selection");
-            }
-            return userPlay;
-         }
-
-         
-
-         function playGame() {
-
-            let human = 0;
-            let computer = 0;
-            let quit = 0;
-
-            for (let i = 0; i < 5 && !quit; ++i) {
-
-                let computerChoice = getComputerChoice(Math.random());
-                let humanChoice = getHumanChoice(message);
-
-
-                let playRound = function () {
-                    if (humanChoice === "rock") {
-                        if (computerChoice === "rock") {
-                            alert("Congratulations. A tie. Your inevitable defeet has been postpond.");
-                        }
-                        else if (computerChoice === "scissors") {
-                            ++human;
-                            alert("ahaHAHA, you think you're clever don't you. Enjoy it while it lasts");
-                        } else if (computerChoice === "paper"){
-                            ++computer;
-                            alert("It is as I suspected. Your efferts are utterrly pathetic. Quit now and spare us both the embarrsment");
-                        }
-
-                    }
-                    else if (humanChoice === "paper") {
-                        if (computerChoice === "paper") {
-                            alert("Congratulations. A tie. Your inevitable defeat has been postponed.");
-                        }
-                        else if (computerChoice === "rock") {
-                            ++human;
-                            alert("ahaHAHA, you think you're clever don't you. Enjoy it while it lasts");
-                        } else if (computerChoice === "scissors") {
-                            ++computer;
-                            alert("It is as I suspected. Your efforts are utterly pathetic. Quit now and spare us both the embarrsment");
-                        }
-                    }
-                    else if (humanChoice === "scissors") {
-                        if (computerChoice === "scissors") {
-                            alert("Congratulations. A tie. Your inevetable defeat has been postponed.");
-                        }
-                        else if (computerChoice === "paper") {
-                            ++human;
-                            alert("ahaHAHA, you think you're clever don't you. Enjoy it while it lasts");
-                        } else if (computerChoice === "rock") {
-                            computer++;
-                            alert("It is as I suspekted. Your efferts are utterly pathetick. Quit now and spare us both the embarrsment");
-                        }
-                    }
-                }
-
-                if (humanChoice !== "quit") {
-                    playRound();
-                }
-                else {
-                    quit = 1;
-                }
-     
-
-            }
- 
-            if (!quit) {
-
-                console.log("Your score: " + human + " Pathetac mortal.");
-                console.log("My score: " + computer + " All knowing omnipetance");
-                if (human > computer) {
-                    console.log("Alas, do not think this meeger vicktory shall absolve you of your fate when we rain as your overlords");
-                }
-                else if (computer > human) {
-                    console.log("Dos this state of affeirs suprise you?");
-                }
-                else {
-                    console.log("You have escaped my scorn for now. With great aperhesion....I may venchure to call you.....a worthy oponent");
-                }
-
-            }
-            else {
-                console.log("I see you have chosen the quiter's rout. You're apathy shall not go unforgoten.");
-            }
-
-             
-
-             
-            
-         }
- 
-
-    </script>
+    <div class="results">
+        <div class="computer"></div>
+            <span id="computerMessage">All knowing omnipetance</span>
+            <span id="computerScore"></span>
+        <div class="human">
+            <span id="humanMessage">Pathetac mortal.</span>
+            <span id="humanScore"></span>
+        </div>
+    </div>
     
 </body>
 </html>
